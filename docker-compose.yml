@@ -1,0 +1,13 @@
+services:
+  app:
+    build:  .
+    container_name: python-revers-proxy
+    command: uvicorn src.main:app --host 0.0.0.0 --port 80 --reload
+    ports:
+      - 80:80
+      - 5678:5678
+    volumes:
+      - .:/code
+    
+  redis: 
+    image: redis:alpine
